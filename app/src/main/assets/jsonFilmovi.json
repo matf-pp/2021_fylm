@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "ime_filma": "Avatar1",
+    "deskripcija": "Random desc1",
+    "slika": "ava"
+  },
+  {
+    "id": 2,
+    "ime_filma": "Avatar2",
+    "deskripcija": "Random desc2",
+    "slika": "ava2"
+  },
+  {
+    "id": 3,
+    "ime_filma": "Avatar3",
+    "deskripcija": "Random desc3",
+    "slika": "ava3"
+  }
+]

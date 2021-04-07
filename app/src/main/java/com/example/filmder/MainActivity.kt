@@ -20,14 +20,15 @@ class MainActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
         btn_start.setOnClickListener {
-            if(et_name.text.toString().isEmpty()){
+            if (et_name.text.toString().isEmpty()) {
                 Toast.makeText(this, "Please enter your name!", Toast.LENGTH_SHORT).show()
-            }else{
+            } else {
                 val intent = Intent(this, homePage::class.java)
                 startActivity(intent)
                 finish()
             }
         }
+
 
     }
 }
