@@ -10,8 +10,8 @@
         <option name="gradleJvm" value="JDK" />
         <option name="modules">
           <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="/media/jocacoca/01D4978C4052A280/Users/Jovan/Documents/Studije/Projekti/PP/2021_fylm" />
+            <option value="/media/jocacoca/01D4978C4052A280/Users/Jovan/Documents/Studije/Projekti/PP/2021_fylm/app" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

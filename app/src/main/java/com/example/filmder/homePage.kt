@@ -10,13 +10,22 @@ import org.json.JSONArray
 import java.io.InputStream
 import java.lang.Exception
 
+data class Filmovi_info (
+        val id: Int,
+        val ime_filma: String,
+        val deskripcija: String,
+        val image: Int
+)
+
+
 class homePage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page)
         val likedList= ArrayList<Filmovi_info>()
         val dislikedList= ArrayList<Filmovi_info>()
-        val niz=citajJson(this) //zbog toga sto ovo vraca niz, val filmovi i Constants postaje nebitan
+        //zbog toga sto ovo vraca niz, val filmovi i Constants postaje nebitan
+        val niz=citajJson(this)
         //val filmovi = Constants.getMovie() ceo Constants fajl je waste of space za sada
         Log.i("Velicina", "${niz.size}") //debug stuff 4 me
         var brojac=1 //pomocna promenljiva da vidim na kom sam filmu u nizu
