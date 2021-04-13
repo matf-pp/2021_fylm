@@ -36,53 +36,25 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <TextView
-                android:id="@+id/tv_title"
+            <Button
+                android:id="@+id/btn_sendsignup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Welcome"
-                android:textColor="#363A43"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginTop="16dp"
-                android:text="Please enter your name."
-                android:textColor="#7A8089"
-                android:textSize="16sp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_name"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:imeOptions="actionGo"
-                    android:hint="Full Name"
-                    android:inputType="textCapWords"
-                    android:textColor="#363A43"
-                    android:textColorHint="#7A8089" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:background="@color/colorPrimary"
+                android:text="Sign up"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
 
             <Button
-                android:id="@+id/btn_start"
+                android:id="@+id/btn_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@color/colorPrimary"
                 android:text="Log in"
                 android:textColor="@android:color/white"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

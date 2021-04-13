@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "930785730745",
+    "project_id": "filmder-f5a4a",
+    "storage_bucket": "filmder-f5a4a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930785730745:android:60622ea5c5f127ef987b68",
+        "android_client_info": {
+          "package_name": "com.example.filmder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "930785730745-r25npf6nce23pturr4rqmu5eini69h0r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDm5dHzjDx3hcQ_FbiqPOohEDos-ILxrWI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "930785730745-r25npf6nce23pturr4rqmu5eini69h0r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
