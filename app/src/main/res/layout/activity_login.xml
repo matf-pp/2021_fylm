@@ -7,7 +7,7 @@
     android:gravity="top"
     android:background="@drawable/pozadina"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".filmder.activities.activities.MainActivity">
 
     <TextView
         android:id="@+id/tv_app_name"
@@ -39,7 +39,7 @@
             android:padding="16dp">
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/et_username_signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -47,7 +47,7 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editTextTextPassword"
+                android:id="@+id/et_password_signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"

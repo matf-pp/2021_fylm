@@ -7,19 +7,19 @@
     android:gravity="top"
     android:background="@drawable/pozadina"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".filmder.activities.activities.MainActivity">
 
     <TextView
         android:id="@+id/tv_app_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="30dp"
         android:gravity="center"
         android:text="@string/app_name"
         android:textColor="@android:color/white"
         android:textSize="50sp"
-        android:textStyle="bold"
-        android:layout_marginTop="50dp"/>
+        android:textStyle="bold" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_main"
@@ -39,7 +39,7 @@
             android:padding="16dp">
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/et_username_signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -47,7 +47,7 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editTextTextEmailAddress"
+                android:id="@+id/et_email_signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -55,7 +55,7 @@
                 android:inputType="textEmailAddress" />
 
             <EditText
-                android:id="@+id/editTextTextPassword"
+                android:id="@+id/et_password_signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -74,4 +74,5 @@
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
 </LinearLayout>
