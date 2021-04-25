@@ -10,6 +10,7 @@
     <color name="colorPrimary">#9013FE</color>
     <color name="colorPrimaryDark">#6A1B9A</color>
     <color name="colorAccent">#9013FE</color>
-
+    <color name="primary_text_color">#FF000000</color>
+    <color name="snackbar_error_color">#F72400</color>
 
 </resources>
