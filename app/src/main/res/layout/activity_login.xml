@@ -39,7 +39,7 @@
             android:padding="16dp">
 
             <EditText
-                android:id="@+id/et_username_signup"
+                android:id="@+id/et_email_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -47,7 +47,7 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/et_password_signup"
+                android:id="@+id/et_password_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"

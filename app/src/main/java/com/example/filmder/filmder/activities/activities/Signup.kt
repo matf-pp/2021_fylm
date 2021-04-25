@@ -6,16 +6,20 @@ import android.text.TextUtils
 import android.view.WindowManager
 import android.widget.Toast
 import com.example.filmder.R
+import com.example.filmder.filmder.activities.activities.firebase.FirestoreClass
 import com.example.filmder.homePage
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.et_username_signup
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_signup.et_username_signup
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.btn_sendsignup
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.coroutines.delay
-import kotlinx.android.synthetic.main.activity_login.et_password_signup as et_password_signup1
+import modules.User
+
 
 class signup : BasicActivity () {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,20 +41,28 @@ class signup : BasicActivity () {
 
         if (validateForm(name, email, password)) {
             showProgressDialog(resources.getString(R.string.please_wait))
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener(
-                    { task ->
-                        hideProgressDialog()
-                        if (task.isSuccessful) {
-                            val firebaseUser: FirebaseUser = task.result!!.user!!
-                            val registeredEmail = firebaseUser.email!!
-                            ErrorSnackBarShow("you have succesfully registered the email adress $email")
-                            val intent = Intent(this, homePage::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
-                    })
+            val mAuth = FirebaseAuth.getInstance()
+            mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val firebaseUser:FirebaseUser = task.result!!.user!!
+                    val registeredEmail = firebaseUser.email!!
+                    val user = User(firebaseUser.uid,name,registeredEmail)
+                    FirestoreClass().registerUser(this,user)
+                } else {
+                    ErrorSnackBarShow(task.exception!!.message.toString())
+                }
+            }
 
         }
+    }
+
+    fun userRegisteredSuccess(){
+        hideProgressDialog()
+        ErrorSnackBarShow("you have succesfully registered the email adress")
+        val intent = Intent(this, homePage::class.java)
+        startActivity(intent)
+        FirebaseAuth.getInstance().signOut()
+        finish()
     }
 
 
