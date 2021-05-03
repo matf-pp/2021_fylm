@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-621207703/2021_fylm.Filmder.iml" filepath="$PROJECT_DIR$/.idea/modules/-621207703/2021_fylm.Filmder.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1898977915/2021_fylm.Filmder.app.iml" filepath="$PROJECT_DIR$/.idea/modules/1898977915/2021_fylm.Filmder.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Filmder.iml" filepath="$PROJECT_DIR$/.idea/modules/Filmder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Filmder.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Filmder.app.iml" />
     </modules>
   </component>
 </project>

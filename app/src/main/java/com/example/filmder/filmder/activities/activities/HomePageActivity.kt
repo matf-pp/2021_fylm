@@ -5,7 +5,11 @@ import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuInflater
+import android.view.View
 import android.view.WindowManager
+import android.widget.PopupMenu
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_home_page.*
 import org.json.JSONArray
 import java.io.InputStream
@@ -98,4 +102,42 @@ class homePage : AppCompatActivity() {
         }
         return niz
     }
-}
+
+
+    //TODO: proveri i isprogramiraj ovaj pop out
+
+    //Uradio sam sve ali nista ne izbacuje a nema gresaka baci pogled i svkakao treba da isprogramiras gde ce sta da ide
+    private fun popout(){
+        val popupmenu = PopupMenu(applicationContext,pop_up)
+        popupmenu.inflate(R.menu.popup_menu)
+        popupmenu.setOnMenuItemClickListener {
+            when(it.itemId){
+
+                R.id.friends -> {
+                    Toast.makeText(applicationContext, "Liked", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.log_out -> {
+                    Toast.makeText(applicationContext, "Log out", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> true
+            }
+        }
+        pop_up.setOnLongClickListener {
+            try {
+                val popup = PopupMenu::class.java.getDeclaredField("mPopup")
+                popup.isAccessible = true
+                val menu = popup.get(popupmenu)
+                menu.javaClass
+                        .getDeclaredMethod("setForcedShowIcon", Boolean::class.java)
+                        .invoke(menu, true)
+            }catch(e:Exception) {
+                e.printStackTrace()
+            }finally {
+                popupmenu.show()
+            }
+                true
+            }
+        }
+    }
