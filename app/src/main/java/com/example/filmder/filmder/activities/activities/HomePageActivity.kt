@@ -1,25 +1,28 @@
 package com.example.filmder
 
 import android.content.Context
-import android.graphics.drawable.Drawable
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuInflater
-import android.view.View
 import android.view.WindowManager
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.filmder.filmder.activities.activities.BasicActivity
+import com.example.filmder.filmder.activities.activities.Login
+import com.example.filmder.filmder.activities.activities.MainActivity
+import com.example.filmder.filmder.activities.activities.firebase.friends
+import com.example.filmder.filmder.activities.activities.signup
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_home_page.*
 import org.json.JSONArray
 import java.io.InputStream
-import java.lang.Exception
 
-data class Filmovi_info (
-    val id: Int,
-    val ime_filma: String,
-    val deskripcija: String,
-    val image: Int
+data class Filmovi_info(
+        val id: Int,
+        val ime_filma: String,
+        val deskripcija: String,
+        val image: Int
 )
 
 
@@ -28,9 +31,10 @@ class homePage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page)
         window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
+
         val likedList= ArrayList<Filmovi_info>()
         val dislikedList= ArrayList<Filmovi_info>()
         //zbog toga sto ovo vraca niz, val filmovi i Constants postaje nebitan
@@ -67,6 +71,10 @@ class homePage : AppCompatActivity() {
 
             brojac++
         }
+        pop_up.setOnClickListener {
+            popout()
+        }
+
 
     }
 
@@ -91,13 +99,13 @@ class homePage : AppCompatActivity() {
 
                 val uri: String= "@drawable/"+jsonObj.getString("slika")
 
-                val imageResource: Int= resources.getIdentifier(uri,null,packageName) //nadam se da je ovo zapravo slika
-                val trenutnifilm= Filmovi_info(id,ime_filma, deskripcija,imageResource) //dodajem kompletan film u niz
+                val imageResource: Int= resources.getIdentifier(uri, null, packageName) //nadam se da je ovo zapravo slika
+                val trenutnifilm= Filmovi_info(id, ime_filma, deskripcija, imageResource) //dodajem kompletan film u niz
                 niz.add(trenutnifilm)
             }
 
         }
-        catch(e: Exception) {
+        catch (e: Exception) {
             e.printStackTrace() //ako dodje do greske u citanju ili necemu drugom
         }
         return niz
@@ -108,23 +116,25 @@ class homePage : AppCompatActivity() {
 
     //Uradio sam sve ali nista ne izbacuje a nema gresaka baci pogled i svkakao treba da isprogramiras gde ce sta da ide
     private fun popout(){
-        val popupmenu = PopupMenu(applicationContext,pop_up)
+        val popupmenu = PopupMenu(applicationContext, pop_up)
         popupmenu.inflate(R.menu.popup_menu)
         popupmenu.setOnMenuItemClickListener {
             when(it.itemId){
 
                 R.id.friends -> {
-                    Toast.makeText(applicationContext, "Liked", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Friends", Toast.LENGTH_SHORT).show()
+                    prijatelji()
                     true
                 }
                 R.id.log_out -> {
                     Toast.makeText(applicationContext, "Log out", Toast.LENGTH_SHORT).show()
+                    logout()
                     true
                 }
                 else -> true
             }
         }
-        pop_up.setOnLongClickListener {
+        pop_up.setOnClickListener {
             try {
                 val popup = PopupMenu::class.java.getDeclaredField("mPopup")
                 popup.isAccessible = true
@@ -132,12 +142,21 @@ class homePage : AppCompatActivity() {
                 menu.javaClass
                         .getDeclaredMethod("setForcedShowIcon", Boolean::class.java)
                         .invoke(menu, true)
-            }catch(e:Exception) {
+            }catch (e: Exception) {
                 e.printStackTrace()
             }finally {
                 popupmenu.show()
             }
                 true
             }
+        }
+
+        fun prijatelji() {
+            val intent = Intent(this, friends::class.java)
+            startActivity(intent)
+        }
+        fun logout() {
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)
         }
     }
