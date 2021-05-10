@@ -1,20 +1,92 @@
 [
   {
     "id": 1,
-    "ime_filma": "Avatar1",
-    "deskripcija": "Random desc1",
+    "ime_filma": "Django Unchained",
+    "deskripcija": "When Django, a slave, is freed, he joins forces with a bounty hunter to rescue his wife, who has been enslaved by Calvin, a hard-hearted plantation owner.",
     "slika": "ava"
   },
   {
     "id": 2,
-    "ime_filma": "Avatar2",
-    "deskripcija": "Random desc2",
+    "ime_filma": "Inglorious Basterds",
+    "deskripcija": "A few Jewish soldiers are on an undercover mission to bring down the Nazi government and put an end to the war. Meanwhile, a woman wants to avenge the death of her family from a German officer.",
     "slika": "ava2"
   },
   {
     "id": 3,
-    "ime_filma": "Avatar3",
-    "deskripcija": "Random desc3",
+    "ime_filma": "Once Upon a Tme in Hollywood",
+    "deskripcija": "Rick, a washed-out actor, and Cliff, his stunt double, struggle to recapture fame and success in 1960s Los Angeles. Meanwhile, living next door to Rick is Sharon Tate and her husband Roman Polanski.",
+    "slika": "ava3"
+  },
+  {
+    "id": 3,
+    "ime_filma": "Pulp Fiction",
+    "deskripcija": "In the realm of underworld, a series of incidents intertwines the lives of two Los Angeles mobsters, a gangster's wife, a boxer and two small-time criminals.",
+    "slika": "ava3"
+  },
+  {
+    "id": 3,
+    "ime_filma": "The Godfather",
+    "deskripcija": "Don Vito Corleone, head of a mafia family, decides to hand over his empire to his youngest son Michael. However, his decision unintentionally puts the lives of his loved ones in grave danger.",
+    "slika": "ava3"
+  },
+  {
+    "id": 3,
+    "ime_filma": "Life is Beautiful",
+    "deskripcija": "A Jewish father and his family are surrounded by Nazi death camps. Living in a hostile environment, he uses humor to shield his young son from the grim realities of war.",
+    "slika": "ava3"
+  },
+  {
+    "id": 3,
+    "ime_filma": "The Phantom Thread",
+    "deskripcija": "Phantom Thread is a 2017 American historical drama film written and directed by Paul Thomas Anderson, and starring Daniel Day-Lewis, Lesley Manville and Vicky Krieps. Set in 1950s London, it stars Day-Lewis as an haute couture dressmaker who takes a young waitress, played by Krieps, as his muse. ",
+    "slika": "ava3"
+  },
+  {
+    "id": 3,
+    "ime_filma": "Apocalypse Now",
+    "deskripcija": "Captain Willard is sent to Cambodia on a dangerous mission to assassinate a renegade colonel who has won the trust of a local tribe.",
+    "slika": "ava3"
+  },
+  {
+    "id": 3,
+    "ime_filma": "The Skin I Live In",
+    "deskripcija": "Ever since his beloved wife was horribly burned in an auto accident, Dr. Robert Ledgard (Antonio Banderas), a skilled plastic surgeon, has tried to develop a new skin that could save the lives of burn victims.",
+    "slika": "ava3"
+  },
+  {
+    "id": 3,
+    "ime_filma": "Pain and Glory",
+    "deskripcija": "A film director reflects on the choices he's made in life as the past and present come crashing down around him.",
+    "slika": "ava3"
+  },
+  {
+    "id": 3,
+    "ime_filma": "Mommy",
+    "deskripcija": "A peculiar neighbor (Suzanne Clément) offers hope to a recent widow (Anne Dorval) who is struggling to raise a teenager (Antoine-Olivier Pilon) who is unpredictable and, sometimes, violent.",
+    "slika": "ava3"
+  },
+  {
+    "id": 3,
+    "ime_filma": "Fallen Angels",
+    "deskripcija": "An assassin, his boss, an entrepreneur and two women cross paths in Hong Kong as their professional and love lives collide and influence each other, mostly without their knowledge.",
+    "slika": "ava3"
+  },
+  {
+    "id": 3,
+    "ime_filma": "Saturday Fiction",
+    "deskripcija": "An actress gathers intelligence for the Allies in Japanese-occupied Shanghai.",
+    "slika": "ava3"
+  },
+  {
+    "id": 3,
+    "ime_filma": "The Blind Chance",
+    "deskripcija": "Witek (Bogusław Linda) is a young medical student who is no longer sure whether he wants to become a doctor, and his future will be determined by whether or not he makes the train that he is running to catch.",
+    "slika": "ava3"
+  },
+  {
+    "id": 3,
+    "ime_filma": "Taxi Driver",
+    "deskripcija": "Travis, an ex-marine and Vietnam veteran, works as a taxi driver in New York City. One day, he is driven to save an underage prostitute from her pimp in an effort to clean the city of its corruption.",
     "slika": "ava3"
   }
 ]

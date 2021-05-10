@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Filmder">
-        <activity android:name=".filmder.activities.activities.firebase.friends"></activity>
+        <activity android:name=".filmder.activities.activities.friends"></activity>
         <activity android:name=".filmder.activities.activities.BasicActivity" />
         <activity android:name=".HomePageActivity" />
         <activity android:name=".filmder.activities.activities.Login" />

@@ -10,9 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.filmder.filmder.activities.activities.BasicActivity
 import com.example.filmder.filmder.activities.activities.Login
-import com.example.filmder.filmder.activities.activities.MainActivity
-import com.example.filmder.filmder.activities.activities.firebase.friends
-import com.example.filmder.filmder.activities.activities.signup
+import com.example.filmder.filmder.activities.activities.friends
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_home_page.*
 import org.json.JSONArray
@@ -26,7 +24,7 @@ data class Filmovi_info(
 )
 
 
-class homePage : AppCompatActivity() {
+class homePage : BasicActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page)
@@ -157,6 +155,8 @@ class homePage : AppCompatActivity() {
         }
         fun logout() {
             val intent = Intent(this, Login::class.java)
+            FirebaseAuth.getInstance().signOut()
+            ErrorSnackBarShow("Signout success")
             startActivity(intent)
         }
     }
