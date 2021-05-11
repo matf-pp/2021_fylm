@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="top"
-    android:background="@drawable/pozadina"
+    android:background="@drawable/pozadinabla"
     android:orientation="vertical"
     tools:context=".filmder.activities.activities.MainActivity">
 

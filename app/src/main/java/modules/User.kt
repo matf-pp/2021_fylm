@@ -2,23 +2,25 @@ package modules
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.util.ArrayList
 
-data class User (
-    val id:String = "",
-    val name:String = "",
-    val email:String = "",
-    val image:String = "",
-    val fcmToken:String=""
-):Parcelable{
+data class User(
+        val id:String? = "",
+        val name:String? = "",
+        val email:String? = "",
+        val image:String? = "",
+        val fcmToken:String?="",
+        var movieId:ArrayList<Int>? = ArrayList()
+) : Parcelable{
     constructor(parcel: Parcel) : this(
-            parcel.readString()!!,
-            parcel.readString()!!,
-            parcel.readString()!!,
-            parcel.readString()!!,
-            parcel.readString()!!) {
-    }
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString()
+    )
 
-    override fun writeToParcel(parcel: Parcel, flags: Int){
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
         parcel.writeString(name)
         parcel.writeString(email)
@@ -26,8 +28,9 @@ data class User (
         parcel.writeString(fcmToken)
     }
 
-    override fun describeContents()=0
-
+    override fun describeContents(): Int {
+        return 0
+    }
 
     companion object CREATOR : Parcelable.Creator<User> {
         override fun createFromParcel(parcel: Parcel): User {
@@ -38,5 +41,4 @@ data class User (
             return arrayOfNulls(size)
         }
     }
-
 }

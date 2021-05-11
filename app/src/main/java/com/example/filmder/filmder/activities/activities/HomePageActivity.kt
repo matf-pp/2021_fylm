@@ -3,25 +3,19 @@ package com.example.filmder
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.WindowManager
 import android.widget.PopupMenu
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.filmder.filmder.activities.activities.BasicActivity
+import modules.Filmovi_info
 import com.example.filmder.filmder.activities.activities.Login
+import com.example.filmder.filmder.activities.activities.MainActivity
 import com.example.filmder.filmder.activities.activities.friends
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_home_page.*
 import org.json.JSONArray
 import java.io.InputStream
 
-data class Filmovi_info(
-        val id: Int,
-        val ime_filma: String,
-        val deskripcija: String,
-        val image: Int
-)
 
 
 class homePage : BasicActivity() {
@@ -37,8 +31,6 @@ class homePage : BasicActivity() {
         val dislikedList= ArrayList<Filmovi_info>()
         //zbog toga sto ovo vraca niz, val filmovi i Constants postaje nebitan
         val niz=citajJson(this)
-        //val filmovi = Constants.getMovie() ceo Constants fajl je waste of space za sada
-        Log.i("Velicina", "${niz.size}") //debug stuff 4 me
         var brojac=1 //pomocna promenljiva da vidim na kom sam filmu u nizu
         Like.setOnClickListener {
             if(brojac==niz.size) // for rotating purposes, na tinderu kada se potrosi potrosio si
@@ -75,6 +67,10 @@ class homePage : BasicActivity() {
 
 
     }
+
+
+
+
 
     fun citajJson(context: Context): ArrayList<Filmovi_info>{ // funkcija cita json i vraca niz filmova
         var json: String?=null
@@ -154,7 +150,7 @@ class homePage : BasicActivity() {
             startActivity(intent)
         }
         fun logout() {
-            val intent = Intent(this, Login::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             FirebaseAuth.getInstance().signOut()
             ErrorSnackBarShow("Signout success")
             startActivity(intent)

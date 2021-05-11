@@ -14,6 +14,7 @@ open class BasicActivity : AppCompatActivity() {
     private var doubleBacktoExitPressedOnce = false
 
     private lateinit var mProgressDialog:Dialog
+    private lateinit var mShowWarning:Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

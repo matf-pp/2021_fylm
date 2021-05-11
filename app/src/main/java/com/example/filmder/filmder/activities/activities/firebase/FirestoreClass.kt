@@ -5,13 +5,17 @@ import com.example.filmder.filmder.activities.activities.Login
 import com.example.filmder.filmder.activities.activities.friends
 import com.example.filmder.filmder.activities.activities.signup
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.ktx.Firebase
 import modules.User
 
 class FirestoreClass {
 
     private val mFireStore = FirebaseFirestore.getInstance()
+    private val mReal = FirebaseDatabase.getInstance()
 
     fun registerUser(activity: signup, userInfo: User) {
         mFireStore.collection("Users")

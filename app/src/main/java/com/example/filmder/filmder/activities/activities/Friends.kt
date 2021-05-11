@@ -12,11 +12,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_friends.*
 import modules.User
 
-class friends : AppCompatActivity() {
+class friends : BasicActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_friends)
+        showProgressDialog("Please Wait we are loading friends")
         var mFireStore = FirebaseFirestore.getInstance()
         mFireStore.collection("Users")
             .get() // Will get the documents snapshots.
@@ -24,21 +25,22 @@ class friends : AppCompatActivity() {
                 // Here we get the list of boards in the form of documents.
                 Log.e(this.javaClass.simpleName, document.documents.toString())
                 // Here we have created a new instance for Boards ArrayList.
-                val boardsList: ArrayList<User> = ArrayList()
-
-                // A for loop as per the list of documents to convert them into Boards ArrayList.
-                for (i in document.documents) {
+                val userList: ArrayList<User> = ArrayList()
+                if (document!=null){
+                    hideProgressDialog()
+                    for (i in document.documents) {
 
                     val board = i.toObject(User::class.java)!!
-                    boardsList.add(board)
+                    userList.add(board)
                 }
 
                 // Here pass the result to the base activity.
-                this.populateBoardsListToUI(this, boardsList)
+                this.populateBoardsListToUI(this, userList)
+                }
             }
             .addOnFailureListener { e ->
-
-
+                hideProgressDialog()
+                ErrorSnackBarShow("Couldnt show friends" + {e.printStackTrace()})
                 Log.e(this.javaClass.simpleName, "Error while creating a board.", e)
             }
     }
@@ -48,7 +50,7 @@ class friends : AppCompatActivity() {
         val listview= findViewById<ListView>(R.id.prijateljipozadina)
         val niz: ArrayList<String> = ArrayList()
         for(user in userList) {
-            niz.add(user.name)
+            user.name?.let { niz.add(it) }
         }
         val nizAdapter: ArrayAdapter<String> = ArrayAdapter(this,android.R.layout.simple_list_item_1, niz)
         listview.adapter=nizAdapter

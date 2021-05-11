@@ -4,15 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.WindowManager
-import android.widget.Toast
 import com.example.filmder.R
 import com.example.filmder.filmder.activities.activities.firebase.FirestoreClass
-import com.example.filmder.homePage
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_signup.et_username_signup
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.btn_sendsignup
@@ -38,6 +33,7 @@ class signup : BasicActivity () {
         val name: String = et_username_signup.text.toString().trim() { it <= ' ' }
         val email: String = et_email_signup.text.toString().trim() { it <= ' ' }
         val password: String = et_password_signup.text.toString().trim() { it <= ' ' }
+        var movielist:ArrayList<Int> = ArrayList()
 
         if (validateForm(name, email, password)) {
             showProgressDialog(resources.getString(R.string.please_wait))
@@ -46,7 +42,7 @@ class signup : BasicActivity () {
                 if (task.isSuccessful) {
                     val firebaseUser:FirebaseUser = task.result!!.user!!
                     val registeredEmail = firebaseUser.email!!
-                    val user = User(firebaseUser.uid,name,registeredEmail)
+                    val user = User(firebaseUser.uid,name,registeredEmail,"","",movielist)
                     FirestoreClass().registerUser(this,user)
                 } else {
                     ErrorSnackBarShow(task.exception!!.message.toString())
@@ -59,7 +55,7 @@ class signup : BasicActivity () {
     fun userRegisteredSuccess(){
         hideProgressDialog()
         ErrorSnackBarShow("you have succesfully registered the email adress")
-        val intent = Intent(this, homePage::class.java)
+        val intent = Intent(this, friends::class.java)
         startActivity(intent)
         FirebaseAuth.getInstance().signOut()
         finish()

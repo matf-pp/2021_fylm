@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="top"
-    android:background="@drawable/pozadina"
+    android:background="@drawable/pozadinabla"
     android:orientation="vertical"
     tools:context=".filmder.activities.activities.MainActivity">
 
@@ -43,7 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Username"
+                android:hint="Email"
                 android:inputType="textPersonName" />
 
             <EditText
