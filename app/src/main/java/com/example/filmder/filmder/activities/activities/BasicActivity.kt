@@ -40,7 +40,7 @@ open class BasicActivity : AppCompatActivity() {
     }
 
     protected fun ErrorSnackBarShow(message:String){
-        val snackBar = Snackbar.make(findViewById(android.R.id.content),message,Snackbar.LENGTH_LONG)
+        val snackBar = Snackbar.make(findViewById(android.R.id.content),message,Snackbar.LENGTH_INDEFINITE)
         val snackBarView = snackBar.view
         snackBarView.setBackgroundColor(ContextCompat.getColor(this,R.color.snackbar_error_color))
         snackBar.show()

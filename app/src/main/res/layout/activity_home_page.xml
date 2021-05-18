@@ -6,14 +6,66 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:background="@drawable/pozadinabla"
-    tools:context=".homePage">
+    tools:context=".homePage"
+    android:orientation="vertical">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/cestitka"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/green"
+    android:visibility="gone">
+    <TextView
+        android:id="@+id/cestitka_text"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="10sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cestitamo pronasli ste film koji mozete zajedno da gledate"
+        android:textSize="22sp"
+        android:textColor="@color/primary_text_color">
+    </TextView>
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/cestitka_text"
+        android:id="@+id/matchTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="Django Unchained "
+        android:textColor="@color/primary_text_color"
+        android:textSize="22sp"></TextView>
+
+    <ImageView
+        android:id="@+id/matchimage"
+        android:layout_width="wrap_content"
+        android:layout_height="234dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/django"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/matchTitle"></ImageView>
+
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/matchimage"
+        android:id="@+id/matchdescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:textColor="@color/primary_text_color">
+
+    </TextView>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
+        android:id="@+id/filmovi"
         android:layout_width="match_parent"
         android:layout_height="613dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        >
 
         <!-- <ImageButton
             android:layout_width="60dp"
@@ -47,10 +99,11 @@
             android:layout_width="wrap_content"
             android:layout_height="234dp"
             android:layout_marginTop="100dp"
-            android:src="@drawable/ava">
+            android:src="@drawable/django">
         </ImageView>
 
         <TextView
+            android:text="When Django, a slave, is freed, he joins forces with a bounty hunter to rescue his wife, who has been enslaved by Calvin, a hard-hearted plantation owner."
             android:id="@+id/tv_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

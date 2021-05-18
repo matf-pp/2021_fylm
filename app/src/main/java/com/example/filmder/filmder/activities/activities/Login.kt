@@ -53,7 +53,7 @@ class Login : BasicActivity() {
 
     fun signInSuccess(user:User){
         hideProgressDialog()
-        val intent = Intent(this, homePage::class.java)
+        val intent = Intent(this, friends::class.java)
         startActivity(intent)
         finish()
     }

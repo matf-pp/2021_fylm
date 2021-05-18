@@ -21,7 +21,7 @@ class MainActivity : BasicActivity() {
 
         var currentUserId = FirestoreClass().getCurrentUserID()
         if (currentUserId.isNotEmpty()) {
-            startActivity(Intent(this, homePage::class.java))
+            startActivity(Intent(this, friends::class.java))
         }
 
             btn_sendsignup.setOnClickListener {

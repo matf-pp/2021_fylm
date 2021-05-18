@@ -3,19 +3,23 @@ package com.example.filmder
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.view.WindowManager
+import android.widget.LinearLayout
 import android.widget.PopupMenu
 import android.widget.Toast
 import com.example.filmder.filmder.activities.activities.BasicActivity
 import modules.Filmovi_info
-import com.example.filmder.filmder.activities.activities.Login
 import com.example.filmder.filmder.activities.activities.MainActivity
 import com.example.filmder.filmder.activities.activities.friends
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.*
 import kotlinx.android.synthetic.main.activity_home_page.*
+import modules.User
 import org.json.JSONArray
 import java.io.InputStream
-
+import kotlin.reflect.typeOf
 
 
 class homePage : BasicActivity() {
@@ -27,47 +31,72 @@ class homePage : BasicActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
-        val likedList= ArrayList<Filmovi_info>()
-        val dislikedList= ArrayList<Filmovi_info>()
-        //zbog toga sto ovo vraca niz, val filmovi i Constants postaje nebitan
-        val niz=citajJson(this)
-        var brojac=1 //pomocna promenljiva da vidim na kom sam filmu u nizu
+        val db = FirebaseFirestore.getInstance().collection("Users")
+        val ThisUser = db.document(FirebaseAuth.getInstance().uid.toString())
+        val connectedUsername = intent.getStringExtra("id")
+        val otherUser = db.document(connectedUsername!!)
+        var OtherUserClass:User//zbog toga sto ovo vraca niz, val filmovi i Constants postaje nebitan
+        var OtherUserMovies:ArrayList<Long> = ArrayList()
+        val MovieList = citajJson(this)
+        var counter = 0 //pomocna promenljiva da vidim na kom sam filmu u nizu
+
+        DrawMovies(MovieList,counter)
+        otherUser.get().addOnSuccessListener { document ->
+            if(document!=null){
+                OtherUserClass=document.toObject(User::class.java)!!
+                OtherUserMovies=OtherUserClass.moviesId
+            }
+        }
         Like.setOnClickListener {
-            if(brojac==niz.size) // for rotating purposes, na tinderu kada se potrosi potrosio si
-                brojac=0
+            if (counter == MovieList.size-1) // for rotating purposes, na tinderu kada se potrosi potrosio si
+                counter = 0
+            DrawMovies(MovieList,counter+1)
+            ThisUser.update("moviesId", FieldValue.arrayUnion(MovieList[counter].id))
+            otherUser.addSnapshotListener { value, error ->
+                if (value != null) {
+                    OtherUserClass = value.toObject(User::class.java)!!
+                    OtherUserMovies=OtherUserClass.moviesId
+                }
+            }
 
-            iv_image.setImageResource(niz[brojac].image)
-            iv_image.maxHeight=200 //MORAO sam da ogranicim height i width jer mi pojede ceo ekran slika, bukv nestanu dugmici
-            iv_image.maxWidth=200
-            // iv_image.setImageDrawable(resources.getDrawable(niz[brojac].image)) //useless for now ali mozda kasnije
-            tv_film.text=niz[brojac].ime_filma
-            tv_description.text=niz[brojac].deskripcija
 
-            likedList.add(niz[brojac]) //pamtim lajkovane
+            if(OtherUserMovies.contains(MovieList[counter].id.toLong())){
+                DrawMatch(MovieList[counter])
+                ThisUser.update("moviesId", ArrayList<Long>())
+                otherUser.update("moviesId",ArrayList<Long>())
+                }
+                counter++
 
-            brojac++
+            }
+            Dislike.setOnClickListener {
+                if (counter == MovieList.size-1) { //for rotating purposes, u pravom svetu nema ovoga
+                    counter = 0
+                }
+                DrawMovies(MovieList,counter+1)
+                ThisUser.update("moviesId", FieldValue.arrayRemove(MovieList[counter].id))
+                counter++
+            }
+            pop_up.setOnClickListener {
+                popout(ThisUser)
+            }
         }
-        Dislike.setOnClickListener {
-            if(brojac==niz.size) //for rotating purposes, u pravom svetu nema ovoga
-                brojac=0
-
-            iv_image.setImageResource(niz[brojac].image)
-            iv_image.maxHeight=200
-            iv_image.maxWidth=200
-            tv_film.text=niz[brojac].ime_filma
-            tv_description.text=niz[brojac].deskripcija
-
-            dislikedList.add(niz[brojac]) //pamtim dislajkovane
-
-            brojac++
-        }
-        pop_up.setOnClickListener {
-            popout()
-        }
 
 
+
+    fun DrawMovies(niz:ArrayList<Filmovi_info>,position:Int){
+        iv_image.setImageResource(niz[position].image)
+        iv_image.maxHeight = 200
+        iv_image.maxWidth = 200
+        tv_film.text = niz[position].ime_filma
+        tv_description.text = niz[position].deskripcija
     }
 
+    fun DrawMatch(winner:Filmovi_info){
+        matchimage.setImageResource(winner.image)
+        matchTitle.text=winner.ime_filma
+        matchdescription.text=winner.deskripcija
+        cestitka.visibility=View.VISIBLE
+    }
 
 
 
@@ -80,10 +109,10 @@ class homePage : BasicActivity() {
 
             json=input.bufferedReader().use{it.readText()}
 
-            var jsonarr= JSONArray(json)
+            val jsonarr= JSONArray(json)
 
             for (i in 0..jsonarr.length()-1) {
-                var jsonObj=jsonarr.getJSONObject(i) //zapravo jsonObjekat u kojem se preko polja name pristupa poljima
+                val jsonObj=jsonarr.getJSONObject(i) //zapravo jsonObjekat u kojem se preko polja name pristupa poljima
                 //sledece 4 promenljive su polja tj. vrednosti koje prosledjujem konstruktoru
                 val id=jsonObj.getInt("id")
 
@@ -105,24 +134,19 @@ class homePage : BasicActivity() {
         return niz
     }
 
+    private fun popout(ThisUser:DocumentReference){
 
-    //TODO: proveri i isprogramiraj ovaj pop out
-
-    //Uradio sam sve ali nista ne izbacuje a nema gresaka baci pogled i svkakao treba da isprogramiras gde ce sta da ide
-    private fun popout(){
         val popupmenu = PopupMenu(applicationContext, pop_up)
         popupmenu.inflate(R.menu.popup_menu)
         popupmenu.setOnMenuItemClickListener {
             when(it.itemId){
 
                 R.id.friends -> {
-                    Toast.makeText(applicationContext, "Friends", Toast.LENGTH_SHORT).show()
-                    prijatelji()
+                    prijatelji(ThisUser)
                     true
                 }
                 R.id.log_out -> {
-                    Toast.makeText(applicationContext, "Log out", Toast.LENGTH_SHORT).show()
-                    logout()
+                    logout(ThisUser)
                     true
                 }
                 else -> true
@@ -145,14 +169,19 @@ class homePage : BasicActivity() {
             }
         }
 
-        fun prijatelji() {
+        fun prijatelji(ThisUser:DocumentReference) {
+            ThisUser.update("moviesId", ArrayList<Long>())
             val intent = Intent(this, friends::class.java)
             startActivity(intent)
         }
-        fun logout() {
+        fun logout(ThisUser:DocumentReference) {
+            ThisUser.update("moviesId", ArrayList<Long>())
             val intent = Intent(this, MainActivity::class.java)
             FirebaseAuth.getInstance().signOut()
             ErrorSnackBarShow("Signout success")
             startActivity(intent)
         }
-    }
+}
+
+
+

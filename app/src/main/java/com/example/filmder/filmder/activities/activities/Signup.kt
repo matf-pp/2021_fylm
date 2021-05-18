@@ -33,8 +33,6 @@ class signup : BasicActivity () {
         val name: String = et_username_signup.text.toString().trim() { it <= ' ' }
         val email: String = et_email_signup.text.toString().trim() { it <= ' ' }
         val password: String = et_password_signup.text.toString().trim() { it <= ' ' }
-        var movielist:ArrayList<Int> = ArrayList()
-
         if (validateForm(name, email, password)) {
             showProgressDialog(resources.getString(R.string.please_wait))
             val mAuth = FirebaseAuth.getInstance()
@@ -42,7 +40,7 @@ class signup : BasicActivity () {
                 if (task.isSuccessful) {
                     val firebaseUser:FirebaseUser = task.result!!.user!!
                     val registeredEmail = firebaseUser.email!!
-                    val user = User(firebaseUser.uid,name,registeredEmail,"","",movielist)
+                    val user = User(firebaseUser.uid,name,registeredEmail,"","",ArrayList())
                     FirestoreClass().registerUser(this,user)
                 } else {
                     ErrorSnackBarShow(task.exception!!.message.toString())
@@ -57,7 +55,6 @@ class signup : BasicActivity () {
         ErrorSnackBarShow("you have succesfully registered the email adress")
         val intent = Intent(this, friends::class.java)
         startActivity(intent)
-        FirebaseAuth.getInstance().signOut()
         finish()
     }
 

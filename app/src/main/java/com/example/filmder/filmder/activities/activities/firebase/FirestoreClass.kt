@@ -8,6 +8,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 import modules.User
@@ -18,11 +20,14 @@ class FirestoreClass {
     private val mReal = FirebaseDatabase.getInstance()
 
     fun registerUser(activity: signup, userInfo: User) {
-        mFireStore.collection("Users")
-            .document(getCurrentUserID()).set(userInfo, SetOptions.merge()).addOnSuccessListener {
+        val thisUser = mFireStore.collection("Users").document(getCurrentUserID())
+        thisUser.set(userInfo, SetOptions.merge()).addOnSuccessListener {
+                //var ArrayofId = ArrayList<Int>()
+                //thisUser.update("movieId",ArrayofId)
                 activity.userRegisteredSuccess()
             }
             .addOnFailureListener { Log.e(activity.javaClass.simpleName, "Error writing document") }
+
     }
 
     fun signInUser(activity: Login) {
@@ -44,31 +49,16 @@ class FirestoreClass {
         return currentUserID
     }
 
-    fun getBoardsList(activity: friends) {
-
-        // The collection name for BOARDS
-        mFireStore.collection("Users")
-            .get() // Will get the documents snapshots.
-            .addOnSuccessListener { document ->
-                // Here we get the list of boards in the form of documents.
-                Log.e(activity.javaClass.simpleName, document.documents.toString())
-                // Here we have created a new instance for Boards ArrayList.
-                val boardsList: ArrayList<User> = ArrayList()
-
-                // A for loop as per the list of documents to convert them into Boards ArrayList.
-                for (i in document.documents) {
-
-                    val board = i.toObject(User::class.java)!!
-                    boardsList.add(board)
-                }
-
-                // Here pass the result to the base activity.
-                activity.populateBoardsListToUI(activity,boardsList)
-            }
-            .addOnFailureListener { e ->
 
 
-                Log.e(activity.javaClass.simpleName, "Error while creating a board.", e)
-            }
+
+   /* fun getUserFromUsername(username:String){
+        val connectedUser = mFireStore.collection("Users")
+                .whereEqualTo("name",username)
+        connectedUser.addSnapshotListener{snapshot,e ->
+            if(e!=null)
+        }
+
+    }*/
     }
-}
+

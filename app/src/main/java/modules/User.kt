@@ -2,7 +2,7 @@ package modules
 
 import android.os.Parcel
 import android.os.Parcelable
-import java.util.ArrayList
+import kotlin.collections.ArrayList
 
 data class User(
         val id:String? = "",
@@ -10,7 +10,7 @@ data class User(
         val email:String? = "",
         val image:String? = "",
         val fcmToken:String?="",
-        var movieId:ArrayList<Int>? = ArrayList()
+        val moviesId:ArrayList<Long> = ArrayList()
 ) : Parcelable{
     constructor(parcel: Parcel) : this(
             parcel.readString(),

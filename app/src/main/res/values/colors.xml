@@ -12,5 +12,6 @@
     <color name="colorAccent">#9013FE</color>
     <color name="primary_text_color">#FF000000</color>
     <color name="snackbar_error_color">#F72400</color>
+    <color name="green">#00FF00</color>
 
 </resources>
