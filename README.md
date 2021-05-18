@@ -8,18 +8,17 @@ Osnovna ideja projekta jeste kreiranje aplikacije koja omogucava korisnicima da 
 
 ## Primeri rada aplikacije
 ![1](/screenshots/photo5843630098488603985.jpg)
-![2](https://user-images.githubusercontent.com/6758619/82671935-f37ab780-9c3f-11ea-822f-4654f3ae4694.gif)
-![3](https://user-images.githubusercontent.com/6758619/82671942-f70e3e80-9c3f-11ea-8916-2f7e5436efbb.gif)
+![2](/screenshots/photo5843630098488603984.jpg)
+![3](/screenshots/photo5843630098488603983.jpg)
 
 ## Jezici i tehnologije
-Korišćen je programski jezik Kotlin u Android Studio okruženju. Za dizajn korisničkog interfejsa upotrebili smo [Google Material](https://material.io/develop/android/) biblioteku
-za navigaciju kao i deo [Android Jetpack](https://developer.android.com/jetpack) biblioteke za neke osnovne elemente.
+Korišćen je programski jezik Kotlin u Android Studio okruženju.
 
 ## Pokretanje
 Projekat je pravljen za Android operativni sistem verzije 4.4 i naviše. U sekciji Releases na GitHub-u možete preuzeti izvršnu verziju
 programa i zatim je instalirati na svom android uređaju. Da bi instalacija .apk fajla prošla nesmetano neophodno je da omogućite skidanje i instaliranje fajlova koji dolaze iz nepoznatih izvora.
 
 ## Autori
-1.  Vuksanović Vladimir, 145/2017, vladevuksan99@gmail.com
-2.  Kojadinović Aleksa, 130/2017, kojadinovic.aleksa98@gmail.com
-3.  Čeliković Lazar, 259/2017, celikoviclazar@hotmail.com
+1.  Ivancevic Mateja, 184/2018
+2.  Lekic Ilija, 180/2018
+3.  Sijacki Jovan,208/2018
