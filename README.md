@@ -7,7 +7,7 @@
 Osnovna ideja projekta jeste kreiranje aplikacije koja omogucava korisnicima da lako izaberu film koji ce gledati, tako sto ce ih povezati i uporediti njihove preference
 
 ## Primeri rada aplikacije
-![1](https://user-images.githubusercontent.com/jocacoca/2021_fylm/blob/main/screenshots/photo5843630098488603985.jpg)
+![1](/screenshots/photo5843630098488603985.jpg)
 ![2](https://user-images.githubusercontent.com/6758619/82671935-f37ab780-9c3f-11ea-822f-4654f3ae4694.gif)
 ![3](https://user-images.githubusercontent.com/6758619/82671942-f70e3e80-9c3f-11ea-8916-2f7e5436efbb.gif)
 
